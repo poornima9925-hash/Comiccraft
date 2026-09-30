@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ComicCraft - Comic Exported Successfully</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f3f4f6;
+            padding: 20px;
+        }
+
+        .success-card {
+            background-color: #ffffff;
+            max-width: 540px;
+            width: 100%;
+            text-align: center;
+            padding: 40px 32px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .success-card h1 {
+            font-size: 1.8rem;
+            color: #16a34a;
+            margin-bottom: 16px;
+        }
+
+        .success-card p {
+            font-size: 1.02rem;
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: #1d72e8;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #1558b8;
+        }
+
+        .re-download {
+            display: block;
+            margin-top: 16px;
+            font-size: 0.88rem;
+            color: #2563eb;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-card">
+        <h1>🎉 Comic Exported Successfully!</h1>
+        <p>
+            Your AI-powered comic has been successfully created! Dive back in and bring another story to life.
+        </p>
+        <a href="/" class="btn-primary">Go Create Another Comic</a>
+        {% if pdf_path %}
+        <a href="{{ pdf_path }}" download class="re-download">
+            Click here if your PDF download did not start automatically
+        </a>
+        {% endif %}
+    </div>
+</body>
+</html>

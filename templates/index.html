@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ComicCraft - Create Your Comic</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80")
+                no-repeat center center fixed;
+            background-size: cover;
+            padding: 20px;
+        }
+
+        .form-card {
+            background: rgba(255, 255, 255, 0.96);
+            width: 100%;
+            max-width: 480px;
+            padding: 32px 28px;
+            border-radius: 12px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+        }
+
+        .form-card h1 {
+            text-align: center;
+            font-size: 1.65rem;
+            color: #1f2937;
+            margin-bottom: 22px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #374151;
+            margin-bottom: 6px;
+        }
+
+        textarea,
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: #111827;
+            background-color: #f9fafb;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 85px;
+        }
+
+        textarea:focus,
+        input[type="text"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #2563eb;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .submit-btn {
+            width: 100%;
+            margin-top: 8px;
+            padding: 12px;
+            background-color: #1d72e8;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #1558b8;
+        }
+
+        .loading-note {
+            display: none;
+            margin-top: 14px;
+            text-align: center;
+            font-size: 0.88rem;
+            color: #4b5563;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-card">
+        <h1>🖌️ Create Your Comic</h1>
+        <form action="/generate" method="POST" onsubmit="showLoading()">
+            <div class="form-group">
+                <label for="prompt">Story Prompt:</label>
+                <textarea
+                    id="prompt"
+                    name="prompt"
+                    placeholder="A brave fox exploring an enchanted forest."
+                    required
+                >A brave fox exploring an enchanted forest.</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="character_name">Main Character Name:</label>
+                <input
+                    type="text"
+                    id="character_name"
+                    name="character_name"
+                    placeholder="Free"
+                    value="Free"
+                    required
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="setting">Setting:</label>
+                <select id="setting" name="setting" required>
+                    <option value="Forest" selected>Forest</option>
+                    <option value="School">School</option>
+                    <option value="Space">Space</option>
+                    <option value="City">City</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tone">Story Tone:</label>
+                <select id="tone" name="tone" required>
+                    <option value="Dramatic" selected>Dramatic</option>
+                    <option value="Light-hearted">Light-hearted</option>
+                    <option value="Poetic">Poetic</option>
+                    <option value="Funny">Funny</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="style">Art Style:</label>
+                <select id="style" name="style" required>
+                    <option value="Realistic" selected>Realistic</option>
+                    <option value="Anime">Anime</option>
+                    <option value="Pixel Art">Pixel Art</option>
+                    <option value="Comic Book">Comic Book</option>
+                </select>
+            </div>
+
+            <button type="submit" id="submitBtn" class="submit-btn">Generate Comic</button>
+            <p id="loadingNote" class="loading-note">
+                ⏳ Generating your 5-panel story and illustrations... Please wait.
+            </p>
+        </form>
+    </div>
+
+    <script>
+        function showLoading() {
+            const btn = document.getElementById("submitBtn");
+            const note = document.getElementById("loadingNote");
+            btn.disabled = true;
+            btn.textContent = "Generating Comic...";
+            note.style.display = "block";
+        }
+    </script>
+</body>
+</html>
